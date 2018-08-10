@@ -1,4 +1,4 @@
-FROM f1c0dbcb76d4f3b66d70bb8d3c722248c6fbb62fa3b00fb3d7866a1d18926d65
+FROM registry.cn-hangzhou.aliyuncs.com/cauu/dev:wf-server.0.0.1
 
 MAINTAINER Martin "cauu@163.com"
 

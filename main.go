@@ -1,24 +1,39 @@
 package main
 
 import (
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
-	_ "github.com/astaxie/beego/session/mysql"
+	"fmt"
 	"os"
 	"ucenter/library/types"
 	_ "ucenter/routers"
+
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/astaxie/beego/session/mysql"
 )
 
 func main() {
-	initOrm()
+	host := os.Getenv("MYSQL_HOST")
+
+	if host == "" {
+		initOrm("127.0.0.1:3306")
+	} else {
+		initOrm(host)
+	}
+
 	beego.Run()
 }
 
-func initOrm() {
+func initOrm(host string) {
+	user := "root"
+	pwd := "123456"
+
+	connStr := fmt.Sprintf("%s:%s@tcp(%s)/UCENTER?charset=utf8&loc=UTC", user, pwd, host)
+
 	types.InitIDGen("123")
+
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 
-	orm.RegisterDataBase("default", "mysql", "root:123456@tcp(127.0.0.1:3306)/UCENTER?charset=utf8&loc=UTC")
+	orm.RegisterDataBase("default", "mysql", connStr)
 
 	orm.RunCommand()
 	orm.Debug = true

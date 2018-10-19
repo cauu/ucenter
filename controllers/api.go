@@ -65,7 +65,7 @@ func (c *ApiController) parseJsonInput(form interface{}) error {
 
 	if err != nil {
 		//err = c.Ctx.Request.ParseForm()
-		ParseForm(form, c.Input())
+		err = c.ParseForm(form)
 	}
 
 	if err != nil {

@@ -33,7 +33,8 @@ func initOrm(host string) {
 
 	orm.RegisterDriver("mysql", orm.DRMySQL)
 
-	orm.RegisterDataBase("default", "mysql", connStr)
+ 	orm.RegisterDataBase("default", "mysql", connStr)
+	// orm.RegisterDataBase("default", "mysql", "root@tcp(127.0.0.1:3306)/UCENTER?charset=utf8&loc=UTC")
 
 	orm.RunCommand()
 	orm.Debug = true

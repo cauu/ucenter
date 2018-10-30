@@ -10,6 +10,6 @@ var UserRouter = &controllers.RouterGroup{
 		"user":     &userController{},
 		"register": &registerController{},
 		"order":    &orderCbController{},
-		"test":     &TestController{},
+		//"test":     &TestController{},
 	},
 }
